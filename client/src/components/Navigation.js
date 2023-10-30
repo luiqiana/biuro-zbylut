@@ -11,7 +11,7 @@ class Navigation extends Component {
 		return(
 			<Navbar className="py-0 px-2" bg="light" expand="lg" sticky="top" id="navbartop">
 				<div className="navbar-fill d-none d-xxl-block" />
-				<Navbar.Brand className="ms-0">
+				<Navbar.Brand className="ms-0" href="/">
 					Biuro rachunkowe<br />
 					Dorota Życińska
 				</Navbar.Brand>

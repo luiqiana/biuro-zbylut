@@ -7,6 +7,7 @@ import './styles/css/style.css';
 
 import Navigation from "./components/Navigation";
 import Index from "./components/Index";
+import Footer from "./components/Footer";
 
 class App extends Component {
 	render() {
@@ -16,6 +17,7 @@ class App extends Component {
 				<Routes>
 					<Route path="/" element={<Index />} />
 				</Routes>
+				<Footer />
 			</BrowserRouter>
 		);
 	}

@@ -23,8 +23,8 @@ code {
 	Bootstrap colors
 */
 .btn-outline-danger {
-	--bs-btn-color: #ff0000;
-	--bs-btn-border-color: #ff0000;
+	--bs-btn-color: #00baba;
+	--bs-btn-border-color: #00baba;
 }
 
 /*
@@ -114,6 +114,62 @@ nav#navbartop {
 					margin-top: 20px;
 					transform: rotate(0deg);
 				}
+			}
+		}
+	}
+}
+
+/*
+	Footer
+*/
+footer {
+	position: relative;
+	z-index: 999;
+
+	div {
+		a {
+			i.footer-icon {
+				text-decoration: none;
+				transition: 0.5s;
+
+				&:hover {
+					color: #00baba !important;
+				}
+			}
+		}
+	}
+
+	div.container {
+		div.row {
+			div {
+				p {
+					a.footer-text {
+						text-decoration: none;
+						transition: 0.5s;
+
+						&:hover {
+							color: #00baba !important;
+						}
+					}
+				}
+
+				div {
+					margin-bottom: 16px;
+				}
+			}
+		}
+	}
+
+	div.footer-copyright {
+		background-color: rgba(0, 0, 0, 0.05);
+		border-radius: 10px;
+
+		a {
+			text-decoration: none;
+			transition: 0.5s;
+
+			&:hover {
+				color: #ff0000 !important;
 			}
 		}
 	}
