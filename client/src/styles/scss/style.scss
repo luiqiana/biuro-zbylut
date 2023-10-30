@@ -1,0 +1,120 @@
+/*
+	Main
+*/
+* {
+	--bs-body-font-family: AcherusgrotesqueRegular, serif
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/*
+	Bootstrap colors
+*/
+.btn-outline-danger {
+	--bs-btn-color: #ff0000;
+	--bs-btn-border-color: #ff0000;
+}
+
+/*
+	Fonts
+*/
+@font-face {
+	font-family: AcherusgrotesqueRegular;
+	src: url(../../fonts/acherusgrotesque-regular.otf);
+}
+
+/*
+	Navbar
+*/
+nav#navbartop {
+	div.navbar-fill {
+		width: 15%;
+		height: 70px;
+	}
+
+	a.navbar-brand {
+	}
+}
+
+.navbar-toggler {
+	width: 30px;
+	height: 30px;
+	padding: 0 !important;
+	border: none !important;
+	box-shadow: none !important;
+	outline: none !important;
+	position: relative;
+	transition: 0.5s ease-in-out;
+	display: flex;
+	justify-content: center;
+
+	span {
+		margin: 0;
+		padding: 0;
+
+		&.toggler-icon {
+			display: block;
+			position: absolute;
+			height: 2px;
+			width: 100%;
+			background-color: rgba(0,0,0,0.55);
+			border-radius: 2px;
+			left: 0;
+			opacity: 1;
+			transform: rotate(0deg);
+			transition: 0.25s ease-in-out;
+
+			&.middle-bar {
+				margin-top: 0;
+			}
+		}
+
+		&.top-bar {
+			margin-top: 0;
+			transform: rotate(135deg);
+		}
+
+		&.middle-bar {
+			opacity: 0;
+			filter: alpha(opacity=0);
+		}
+
+		&.bottom-bar {
+			margin-top: 0;
+			transform: rotate(-135deg);
+		}
+	}
+
+	&.collapsed {
+		span {
+			&.toggler-icon {
+				&.top-bar {
+					margin-top: -20px;
+					transform: rotate(0deg);
+				}
+
+				&.middle-bar {
+					opacity: 1;
+					filter: alpha(opacity=100);
+				}
+
+				&.bottom-bar {
+					margin-top: 20px;
+					transform: rotate(0deg);
+				}
+			}
+		}
+	}
+}
