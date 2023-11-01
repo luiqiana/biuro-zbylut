@@ -174,3 +174,63 @@ footer {
 		}
 	}
 }
+
+/*
+	Index
+*/
+// Main
+section#main {
+	width: 100%;
+	height: calc(100vh - 70px);
+	background-size: cover;
+	background: url("../../imgs/index/mainbackground.jpeg") no-repeat fixed;
+	background-size: cover;
+	position: relative;
+
+	div.text-container {
+		position: absolute;
+		background-color: #f8f9fa;
+		top: 30px;
+		border-top-right-radius: 10px;
+		border-bottom-right-radius: 10px;
+
+		animation: anim 1s ease-in-out;
+
+		@keyframes anim {
+			from {
+				transform: translateX(-120%);
+			}
+			to {
+				transform: translateX(0);
+			}
+		}
+
+		h1 {
+			margin-bottom: 0;
+
+			@media(min-width: 800px) {
+				font-size: 72px;
+			}
+			@media(min-width: 500px) and (max-width: 799px) {
+				font-size: 48px;
+			}
+			@media(min-width: 400px) and (max-width: 499px) {
+				font-size: 36px;
+			}
+			@media(min-width: 350px) and (max-width: 399px) {
+				font-size: 30px;
+			}
+			@media(max-width: 349px) {
+				font-size: 24px;
+			}
+		}
+
+		h4 {
+			margin-bottom: 0;
+
+			@media(max-width: 399px) {
+				font-size: 18px;
+			}
+		}
+	}
+}
