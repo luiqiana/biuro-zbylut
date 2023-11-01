@@ -234,3 +234,69 @@ section#main {
 		}
 	}
 }
+
+// About
+section#about {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+
+	@media(min-width: 800px) {
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 30%;
+			height: 100%;
+			background-color: #c7c7c7;
+			clip-path: polygon(0 0, 50% 0, 100% 100%, 0 100%);
+			z-index: -1
+		}
+
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			right: 0;
+			width: 200px;
+			height: 200px;
+			background-color: #c7c7c7;
+			clip-path: polygon(100% 0, 0 100%, 100% 100%);
+			z-index: -1;
+		}
+	}
+
+	div.container {
+		div.header-container {
+			width: 100%;
+
+			h1 {
+				font-size: 72px;
+				margin-bottom: 0;
+			}
+
+			div.divider {
+				width: 100px;
+				height: 5px;
+				background-color: #00baba;
+
+				@media(max-width: 575px) {
+					margin-left: auto;
+					margin-right: auto;
+				}
+			}
+		}
+
+		div.row {
+			p {
+				@media(min-width: 576px) {
+					font-size: 18px;
+				}
+				@media(max-width: 575px) {
+					font-size: 16px;
+				}
+			}
+		}
+	}
+}
