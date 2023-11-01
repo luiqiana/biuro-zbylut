@@ -238,8 +238,8 @@ section#main {
 // About
 section#about {
 	width: 100%;
-	overflow: hidden;
 	position: relative;
+	scroll-margin-top: 70px;
 
 	@media(min-width: 800px) {
 		&::before {
