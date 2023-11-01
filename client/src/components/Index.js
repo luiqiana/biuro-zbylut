@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 
 import Main from "./index/Main";
+import Services from "./index/Services";
 import About from "./index/About";
 
 class Index extends Component {
@@ -8,6 +9,7 @@ class Index extends Component {
 		return(
 			<>
 				<Main />
+				<Services />
 				<About />
 			</>
 		);
