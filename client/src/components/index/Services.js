@@ -1,8 +1,6 @@
 import React, {Component} from "react";
 
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class Services extends Component {
 	constructor(props) {
@@ -75,14 +73,14 @@ class Services extends Component {
 							<div className="divider" />
 						</div>
 						<div className="text-container mt-3">
-							<h4>Usługi księgowe: «</h4>
+							<h4>Usługi księgowe: &laquo;</h4>
 							<div className="subtext-container">
 								<h5>pełna księgowość -&nbsp;</h5>
 								<h5>książki przychodów i rozchodów -&nbsp;</h5>
 							</div>
 						</div>
 						<div className="text-container">
-							<h4>Inne: «</h4>
+							<h4>Inne: &laquo;</h4>
 							<div className="subtext-container">
 								<h5>kadry -&nbsp;</h5>
 								<h5>płace -&nbsp;</h5>
