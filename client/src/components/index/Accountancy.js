@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 class Accountancy extends Component {
 	render() {
 		return(
-			<section id="accountancy" className="p-4">
+			<section id="accountancy" className="py-4">
 				<Container>
 					<div className="header-container">
 						<h1>Księgowość</h1>
