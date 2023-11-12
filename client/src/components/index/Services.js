@@ -48,22 +48,17 @@ class Services extends Component {
 				<div className="big-container p-0" ref={this.BigContainerRef}>
 					<div className="big-wrapper p-3" ref={this.BigWrapperRef}>
 						<h2>Nasze usługi:</h2>
-						<div className="divider" />
-						<div className="text-container">
-							<h4 className="mt-2">&nbsp;» Usługi księgowe:</h4>
-							<div className="subtext-container">
-								<h5>&nbsp;&nbsp;- pełna księgowość</h5>
-								<h5>&nbsp;&nbsp;- książki przychodów i rozchodów</h5>
-							</div>
-						</div>
-						<div className="text-container mt-3">
-							<h4>&nbsp;» Inne:</h4>
-							<div className="subtext-container">
-								<h5>&nbsp;&nbsp;- kadry</h5>
-								<h5>&nbsp;&nbsp;- płace</h5>
-								<h5>&nbsp;&nbsp;- ZUS</h5>
-							</div>
-						</div>
+						<ul className="text-container">
+							<li className="header mt-2">Usługi księgowe:</li>
+							<li className="point">pełna księgowość</li>
+							<li className="point">książki przychodów i rozchodów</li>
+						</ul>
+						<ul className="text-container mt-3">
+							<li className="header mt-2">Inne:</li>
+							<li className="point">kadry</li>
+							<li className="point">płace</li>
+							<li className="point">ZUS</li>
+						</ul>
 					</div>
 				</div>
 				<div className="small-container p-3 text-end" ref={this.SmallContainerRef}>
@@ -72,23 +67,18 @@ class Services extends Component {
 							<h1>Nasze usługi</h1>
 							<div className="divider" />
 						</div>
-						<div className="text-container mt-3">
-							<h4>Usługi księgowe: &laquo;</h4>
-							<div className="subtext-container">
-								<h5>pełna księgowość -&nbsp;</h5>
-								<h5>książki przychodów i rozchodów -&nbsp;</h5>
-							</div>
-						</div>
-						<div className="text-container">
-							<h4>Inne: &laquo;</h4>
-							<div className="subtext-container">
-								<h5>kadry -&nbsp;</h5>
-								<h5>płace -&nbsp;</h5>
-								<h5>ZUS -&nbsp;</h5>
-							</div>
-						</div>
+						<ul className="text-container mt-3">
+							<li className="header">Usługi księgowe:</li>
+							<li className="point">pełna księgowość</li>
+							<li className="point">książki przychodów i rozchodów</li>
+						</ul>
+						<ul className="text-container">
+							<li className="header">Inne:</li>
+							<li className="point">kadry</li>
+							<li className="point">płace</li>
+							<li className="point">ZUS</li>
+						</ul>
 					</Container>
-
 				</div>
 			</section>
 		);
