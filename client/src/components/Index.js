@@ -6,6 +6,7 @@ import About from "./index/About";
 import Accountancy from "./index/Accountancy";
 import Other from "./index/Other";
 import Pricing from "./index/Pricing";
+import Contact from "./index/Contact";
 
 class Index extends Component {
 	render() {
@@ -17,6 +18,7 @@ class Index extends Component {
 				<Accountancy />
 				<Other />
 				<Pricing />
+				<Contact />
 			</>
 		);
 	}
