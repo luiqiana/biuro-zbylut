@@ -17,18 +17,18 @@ class Contact extends Component {
 				</div>
 				<Container fluid className="mt-3">
 					<Row>
-						<Col md={6} className="p-0 ps-0 ps-md-2">
+						<Col md={6} className="p-0 ps-0 ps-md-2 mt-3 mt-md-0 order-1 order-md-0">
 							<div className="section-container p-3">
 								<div className="subheader-container text-center">
 									<h1>Formularz</h1>
 									<div className="divider" />
 								</div>
-								<div className="form-container">
+								<div className="form-container mt-3">
 									<ContactForm />
 								</div>
 							</div>
 						</Col>
-						<Col md={6} className="p-0 ps-0 ps-md-2 mt-3 mt-md-0">
+						<Col md={6} className="p-0 ps-0 ps-md-2 mt-0 order-0 order-md-1">
 							<div className="section-container p-3">
 								<div className="subheader-container text-center">
 									<h1>Mapa</h1>
