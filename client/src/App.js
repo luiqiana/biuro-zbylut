@@ -9,6 +9,8 @@ import Navigation from "./components/Navigation";
 import Index from "./components/Index";
 import Footer from "./components/Footer";
 
+import E404 from "./components/errors/E404";
+
 class App extends Component {
 	render() {
 		return(
@@ -16,6 +18,7 @@ class App extends Component {
 				<Navigation />
 				<Routes>
 					<Route path="/" element={<Index />} />
+					<Route path="*" element={<E404 />} />
 				</Routes>
 				<Footer />
 			</BrowserRouter>

@@ -25,6 +25,13 @@ code {
 .btn-outline-danger {
 	--bs-btn-color: #00baba;
 	--bs-btn-border-color: #00baba;
+	--bs-btn-hover-color: #ffffff;
+	--bs-btn-hover-bg: #00baba;
+	--bs-btn-hover-border-color: #00baba;
+	--bs-btn-active-color: #ffffff;
+	--bs-btn-active-bg: #00baba;
+	--bs-btn-active-border-color: #00baba;
+	--bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(0, 186, 186, 0.5);
 }
 
 /*
@@ -1138,6 +1145,61 @@ section#contact {
 					display: none;
 				}
 			}
+		}
+	}
+}
+
+section#error {
+	width: 100%;
+	height: calc(100vh - 70px);
+
+	@media(min-width: 800px) {
+		&::before {
+			content: '';
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			bottom: -2px;
+			width: 70%;
+			background-color: #c7c7c7;
+			clip-path: polygon(0 0, 70% 0, 40% 100%, 0% 100%);
+			z-index: -1
+		}
+	}
+
+	div.img-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		img {
+			width: 50%;
+		}
+	}
+
+	div.text-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+
+		div.subtext-container {
+			h4 {
+				a {
+					color: #00baba;
+					text-decoration: none;
+					transition: 0.5s;
+
+					&:hover {
+						color: #008a8a;
+					}
+				}
+			}
+		}
+	}
+
+	div.button-container {
+		button {
+			font-size: 18px;
 		}
 	}
 }
