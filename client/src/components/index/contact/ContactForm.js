@@ -7,6 +7,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 
+import FormValidation from './form/validation/FormValidation';
+import ErrorsCreator from './form/ErrorsCreator';
+
 class ContactForm extends Component {
 	constructor(props) {
 		super(props);
@@ -28,7 +31,8 @@ class ContactForm extends Component {
 			emailHighlight: false,
 			termsHighlight: false,
 			messageHighlight: false,
-			loader: false
+			loader: false,
+			errors: <></>
 		};
 
 		this.recaptchaRef = React.createRef();
@@ -38,6 +42,8 @@ class ContactForm extends Component {
 		this.changeInput = this.changeInput.bind(this);
 		this.changeTerms = this.changeTerms.bind(this);
 		this.changeCaptcha = this.changeCaptcha.bind(this);
+		this.submitForm = this.submitForm.bind(this);
+		this.validateForm = this.validateForm.bind(this);
 	}
 
 	changeInput(e) {
@@ -55,12 +61,63 @@ class ContactForm extends Component {
 	changeCaptcha = (value) => {
 		this.setState({
 			captcha: value === null ? "notverified" : value
+		}, () => {
+			if(this.state.captcha !== "notverified") this.submitForm();
 		});
 	}
 
+	validateForm = () => {
+		this.setState({
+			nameHighlight: false,
+			surnameHighlight: false,
+			countrycodeHighlight: false,
+			phoneHighlight: false,
+			emailHighlight: false,
+			termsHighlight: false,
+			messageHighlight: false,
+			errors: <></>
+		});
+
+		const inputs = {
+			name: this.state.name,
+			surname: this.state.surname,
+			countrycode: this.state.countrycode,
+			phone: this.state.phone,
+			email: this.state.email,
+			company: this.state.company,
+			terms: this.state.terms,
+			message: this.state.message,
+			captcha: this.state.captcha
+		}
+
+		const validate = FormValidation.validateForm(inputs);
+
+		if(!validate.valid) {
+			for(let i = 0; i < validate.highlight.length; i ++) {
+				this.setState({
+					[validate.highlight[i] + "Highlight"]: true,
+				});
+			}
+
+			this.setState({
+				errors: (
+					<ErrorsCreator
+						key={1}
+						errors={validate.errors}
+					/>
+				)
+			});
+		}
+
+		return validate.valid;
+	}
+
 	submitForm = () => {
-		this.recaptchaRef.current.execute();
-		console.log("Form submitted");
+		if(this.validateForm()) {
+		}
+		else {
+			//console.log("Form not submitted!");
+		}
 	}
 
 	render() {
@@ -109,7 +166,7 @@ class ContactForm extends Component {
 						<Row className="mt-2">
 							<Col xs={12} className="p-0">
 								<Form.Group className="contact-message-container">
-									<textarea className={`contact-info-textarea-input ps-1 w-100 ${this.state.message ? "highlight" : ""}`} id="contactFormMessageInput" name="contactFormMessageInput" spellCheck="true" placeholder="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)} />
+									<textarea className={`contact-info-textarea-input ps-1 w-100 ${this.state.messageHighlight ? "highlight" : ""}`} id="contactFormMessageInput" name="contactFormMessageInput" spellCheck="true" placeholder="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)} />
 								</Form.Group>
 							</Col>
 						</Row>
@@ -117,7 +174,7 @@ class ContactForm extends Component {
 							<Col xs={12} className="p-0">
 								<Form.Group className="contact-submit-container">
 									<span className={`contact-submit-loader spinner-border spinner-border-md ${!this.state.loader ? "text" : "loader"}`} role="status" aria-hidden="true"/>
-									<button type="button" className={`contact-submit-button ${!this.state.loader ? "text" : "loader"}`} onClick={this.submitForm}>Wyślij</button>
+									<button type="button" className={`contact-submit-button ${!this.state.loader ? "text" : "loader"}`} onClick={() => {this.state.captcha !== "notverified" ? this.submitForm() : this.recaptchaRef.current.execute()}}>Wyślij</button>
 								</Form.Group>
 							</Col>
 						</Row>
@@ -141,6 +198,13 @@ class ContactForm extends Component {
 										size="invisible"
 										ref={this.recaptchaRef}
 									/>
+								</Form.Group>
+							</Col>
+						</Row>
+						<Row className="mt-2">
+							<Col xs={12} className="p-0">
+								<Form.Group className="contact-errors-container mt-0">
+									<p className="m-0">{this.state.errors}</p>
 								</Form.Group>
 							</Col>
 						</Row>

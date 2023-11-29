@@ -1144,6 +1144,14 @@ section#contact {
 				div.contact-recaptcha-container {
 					display: none;
 				}
+
+				div.contact-errors-container {
+					width: 100%;
+					text-align: center;
+					color: #ff0000;
+					font-size: 18px;
+					margin-top: 10px;
+				}
 			}
 		}
 	}
