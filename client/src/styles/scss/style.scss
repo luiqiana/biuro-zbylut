@@ -775,6 +775,8 @@ section#contact {
 		height: 100%;
 		background-color: #dddddd;
 		border-radius: 20px;
+		display: flex;
+		flex-direction: column;
 
 		div.subheader-container {
 			h1 {
@@ -802,13 +804,14 @@ section#contact {
 
 		div.map-container {
 			width: 100%;
-			height: 100%;
+			flex: 1;
 
 			div.map-element-container {
 				width: 100%;
 				min-height: 400px;
 				border-radius: 15px;
 				border: #ffffff solid 5px;
+				height: 100%;
 			}
 		}
 
