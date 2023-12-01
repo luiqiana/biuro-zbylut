@@ -9,6 +9,9 @@ import Form from 'react-bootstrap/Form';
 
 import FormValidation from './form/validation/FormValidation';
 import ErrorsCreator from './form/ErrorsCreator';
+import {phoneChanger} from './form/validation/Functions';
+
+import Alert from './form/Alert';
 
 class ContactForm extends Component {
 	constructor(props) {
@@ -32,10 +35,12 @@ class ContactForm extends Component {
 			termsHighlight: false,
 			messageHighlight: false,
 			loader: false,
-			errors: <></>
+			errors: <></>,
+			sent: ""
 		};
 
 		this.recaptchaRef = React.createRef();
+		this.AlertRef = React.createRef();
 	}
 
 	componentDidMount() {
@@ -44,6 +49,16 @@ class ContactForm extends Component {
 		this.changeCaptcha = this.changeCaptcha.bind(this);
 		this.submitForm = this.submitForm.bind(this);
 		this.validateForm = this.validateForm.bind(this);
+		this.highlightInputs = this.highlightInputs.bind(this);
+		this.loader = this.loader.bind(this);
+		this.showAlert = this.showAlert.bind(this);
+		this.closeAlert = this.closeAlert.bind(this);
+		this.getAlert = this.getAlert.bind(this);
+		this.resetForm = this.resetForm.bind(this);
+	}
+
+	getAlert() {
+		return this.AlertRef.current;
 	}
 
 	changeInput(e) {
@@ -58,46 +73,167 @@ class ContactForm extends Component {
 		});
 	}
 
+	loader(loading) {
+		this.setState({
+			loader: loading
+		});
+	}
+
 	changeCaptcha = (value) => {
 		this.setState({
 			captcha: value === null ? "notverified" : value
 		}, () => {
-			if(this.state.captcha !== "notverified") this.submitForm();
+			if(this.state.captcha !== "notverified") this.validateForm();
 		});
+	}
+
+	showAlert(type) {
+		const AlertState = this.getAlert();
+
+		AlertState.setState({
+			type: type,
+			show: true
+		});
+	}
+
+	closeAlert = () => {
+		const AlertState = this.getAlert();
+
+		AlertState.setState({
+			show: false
+		});
+	}
+
+	resetForm() {
+		this.loader(false);
+
+		this.setState({
+			name: "",
+			surname: "",
+			countrycode: "",
+			phone: "",
+			email: "",
+			company: "",
+			message: "",
+			terms: false
+		});
+
+		setTimeout(() => {
+			this.closeAlert();
+			this.setState({
+				sent: ""
+			});
+		}, 5000);
+	}
+
+	highlightInputs(type, inputs) {
+		if(type === "set") {
+			const NoE = Object.keys(inputs).length;
+
+			for(let i = 0; i < NoE; i++) {
+				this.setState({
+					[`${inputs[i]}Highlight`]: true
+				});
+			}
+		}
+		else {
+			this.setState({
+				nameHighlight: false,
+				surnameHighlight: false,
+				countrycodeHighlight: false,
+				phoneHighlight: false,
+				emailHighlight: false,
+				termsHighlight: false,
+				messageHighlight: false
+			});
+		}
+	}
+
+	submitForm(inputs) {
+		this.loader(true);
+
+		const data = {
+			name: inputs.name,
+			surname: inputs.surname,
+			phone: (inputs.countrycode + inputs.phone).toString(),
+			email: inputs.email,
+			company: inputs.company,
+			message: inputs.message,
+			terms: inputs.terms,
+			captcha: inputs.captcha
+		};
+
+		fetch(`${process.env.REACT_APP_API_DOMAIN}/api/mailer/form`, {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(data)
+		}).then(
+			response => response.json()
+		).then(
+			data => {
+				this.setState({
+					sent: data.sent
+				});
+
+				this.showAlert(data.sent);
+
+				if(data.sent !== "false") this.resetForm();
+				else {
+					this.loader(false);
+
+					setTimeout(() => {
+						this.closeAlert();
+						this.setState({
+							sent: ""
+						});
+					}, 5000);
+				}
+			}
+		).catch(
+			() => {
+				this.setState({
+					sent: "false"
+				});
+
+				this.showAlert("false");
+				this.loader(false);
+
+				setTimeout(() => {
+					this.closeAlert();
+					this.setState({
+						sent: ""
+					});
+				}, 5000);
+			}
+		);
 	}
 
 	validateForm = () => {
 		this.setState({
-			nameHighlight: false,
-			surnameHighlight: false,
-			countrycodeHighlight: false,
-			phoneHighlight: false,
-			emailHighlight: false,
-			termsHighlight: false,
-			messageHighlight: false,
 			errors: <></>
 		});
+
+		this.highlightInputs("clear", []);
 
 		const inputs = {
 			name: this.state.name,
 			surname: this.state.surname,
 			countrycode: this.state.countrycode,
-			phone: this.state.phone,
+			phone: phoneChanger(this.state.phone),
 			email: this.state.email,
 			company: this.state.company,
-			terms: this.state.terms,
 			message: this.state.message,
+			terms: this.state.terms,
 			captcha: this.state.captcha
 		}
 
 		const validate = FormValidation.validateForm(inputs);
 
 		if(!validate.valid) {
-			for(let i = 0; i < validate.highlight.length; i ++) {
-				this.setState({
-					[validate.highlight[i] + "Highlight"]: true,
-				});
-			}
+			this.highlightInputs("set", validate.highlight);
 
 			this.setState({
 				errors: (
@@ -108,21 +244,16 @@ class ContactForm extends Component {
 				)
 			});
 		}
-
-		return validate.valid;
-	}
-
-	submitForm = () => {
-		if(this.validateForm()) {
-		}
-		else {
-			//console.log("Form not submitted!");
-		}
+		else this.submitForm(inputs);
 	}
 
 	render() {
 		return(
 			<>
+				<Alert
+					key={1}
+					ref={this.AlertRef}
+				/>
 				<Form className="contact-form" id="contactForm">
 					<Container fluid>
 						<Row>
@@ -174,7 +305,7 @@ class ContactForm extends Component {
 							<Col xs={12} className="p-0">
 								<Form.Group className="contact-submit-container">
 									<span className={`contact-submit-loader spinner-border spinner-border-md ${!this.state.loader ? "text" : "loader"}`} role="status" aria-hidden="true"/>
-									<button type="button" className={`contact-submit-button ${!this.state.loader ? "text" : "loader"}`} onClick={() => {this.state.captcha !== "notverified" ? this.submitForm() : this.recaptchaRef.current.execute()}}>Wyślij</button>
+									<button type="button" className={`contact-submit-button ${!this.state.loader ? "text" : "loader"}`} onClick={() => {this.state.captcha !== "notverified" ? this.validateForm() : this.recaptchaRef.current.execute()}}>Wyślij</button>
 								</Form.Group>
 							</Col>
 						</Row>
