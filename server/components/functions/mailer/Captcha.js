@@ -5,7 +5,7 @@ require('dotenv').config();
 module.exports = {
 	validate: async function(data) {
 		try {
-			let success, score;
+			let success;
 
 			await fetch("https://www.google.com/recaptcha/api/siteverify", {
 				method: "POST",
