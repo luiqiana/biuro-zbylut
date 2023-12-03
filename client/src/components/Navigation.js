@@ -12,7 +12,7 @@ class Navigation extends Component {
 			<Navbar className="py-0 px-2" bg="light" expand="lg" sticky="top" id="navbartop">
 				<div className="navbar-fill d-none d-xxl-block" />
 				<Navbar.Brand className="ms-0" href="/">
-					Biuro rachunkowe<br />
+					Biuro Rachunkowe<br />
 					Dorota Życińska
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="basic-navbar-nav" className="d-flex d-lg-none flex-column justify-content-around">

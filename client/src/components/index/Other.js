@@ -8,7 +8,7 @@ class Other extends Component {
 			<section id="other" className="pt-4 pb-2">
 				<Container>
 					<div className="header-container">
-						<h1>Kadry, płace, ZUS</h1>
+						<h1>Kadry Płace ZUS</h1>
 						<div className="divider" />
 					</div>
 					<ul className="text-container mt-3">

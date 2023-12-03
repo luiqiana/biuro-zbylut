@@ -20,7 +20,7 @@ const SectionsConfig = {
 		name: "Accountancy"
 	},
 	s4: {
-		title: "Kadry, płace, ZUS",
+		title: "Kadry Płace ZUS",
 		url: "/#other",
 		name: "Other"
 	},

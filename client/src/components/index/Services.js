@@ -50,13 +50,13 @@ class Services extends Component {
 						<h2>Nasze usługi:</h2>
 						<ul className="text-container">
 							<li className="header mt-2">Usługi księgowe:</li>
-							<li className="point">pełna księgowość</li>
-							<li className="point">książki przychodów i rozchodów</li>
+							<li className="point">Pełna księgowość</li>
+							<li className="point">Książki przychodów i rozchodów</li>
 						</ul>
 						<ul className="text-container mt-3">
 							<li className="header mt-2">Inne:</li>
-							<li className="point">kadry</li>
-							<li className="point">płace</li>
+							<li className="point">Kadry</li>
+							<li className="point">Płace</li>
 							<li className="point">ZUS</li>
 						</ul>
 					</div>
@@ -69,13 +69,13 @@ class Services extends Component {
 						</div>
 						<ul className="text-container mt-3">
 							<li className="header">Usługi księgowe:</li>
-							<li className="point">pełna księgowość</li>
-							<li className="point">książki przychodów i rozchodów</li>
+							<li className="point">Pełna księgowość</li>
+							<li className="point">Książki przychodów i rozchodów</li>
 						</ul>
 						<ul className="text-container">
 							<li className="header">Inne:</li>
-							<li className="point">kadry</li>
-							<li className="point">płace</li>
+							<li className="point">Kadry</li>
+							<li className="point">Płace</li>
 							<li className="point">ZUS</li>
 						</ul>
 					</Container>
