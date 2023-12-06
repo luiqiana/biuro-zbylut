@@ -3,7 +3,7 @@
 require('dotenv').config();
 
 module.exports = {
-	validate: async function(data) {
+	validate: async function(captcha) {
 		try {
 			let success;
 
@@ -12,15 +12,19 @@ module.exports = {
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				},
-				body: `secret=${process.env.CAPTCHA_SECRET_KEY}&response=${data.captcha}`
+				body: `secret=${process.env.CAPTCHA_SECRET_KEY}&response=${captcha}`
 			}).then(
 				response => response.json()
 			).then(
 				data => {
-					success = data.success;
+					console.log("Recaptcha validation: " + data.success);
+					if(data.success) {
+						success = data.success && data.score >= 0.4;
+					}
 				}
 			).catch(
-				() => {
+				err => {
+					console.error("Recaptcha validation catch: " + err);
 					success = false;
 				}
 			);

@@ -55,6 +55,11 @@ class ContactForm extends Component {
 		this.closeAlert = this.closeAlert.bind(this);
 		this.getAlert = this.getAlert.bind(this);
 		this.resetForm = this.resetForm.bind(this);
+		this.phoneChanger = this.phoneChanger.bind(this);
+	}
+
+	phoneChanger(str) {
+		return str.replace(/[\s-]/g, '');
 	}
 
 	getAlert() {
