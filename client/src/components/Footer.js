@@ -28,14 +28,14 @@ class Footer extends Component {
 							</p>
 							<p>
 								<i className="bi bi-telephone-fill me-3" />
-								<a href="tel:+48338542086" className="text-reset footer-text">+48 33 854 20 86</a>
+								<a href="tel:+48500160168" className="text-reset footer-text">+48 500 160 168</a>
 							</p>
 							<div>
 								<i className="bi bi-house me-3" />
 								<h6 className="d-inline-block text-uppercase fw-bold">Adres</h6><br />
 								Biuro Rachunkowe Dorota Życińska<br />
-								ul. Sikorskiego 24<br />
-								42-450 Ustroń<br />
+								os. Manhatan 3/64<br />
+								43-450 Ustroń<br />
 							</div>
 						</Col>
 					</Row>

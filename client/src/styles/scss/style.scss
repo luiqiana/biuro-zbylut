@@ -176,7 +176,7 @@ footer {
 			transition: 0.5s;
 
 			&:hover {
-				color: #ff0000 !important;
+				color: #00baba !important;
 			}
 		}
 	}
@@ -1235,5 +1235,17 @@ section#error {
 		button {
 			font-size: 18px;
 		}
+	}
+}
+
+/*
+	Terms
+*/
+section#terms {
+	width: 100%;
+
+	iframe {
+		width: 100%;
+		height: calc(100vh - 70px);
 	}
 }

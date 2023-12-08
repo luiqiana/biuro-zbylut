@@ -6,9 +6,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import './styles/css/style.css';
 
 import Navigation from "./components/Navigation";
-import Index from "./components/Index";
 import Footer from "./components/Footer";
 
+import Index from "./components/Index";
+import Terms from "./components/Terms";
 import E404 from "./components/errors/E404";
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
 				<Navigation />
 				<Routes>
 					<Route path="/" element={<Index />} />
+					<Route path="/legals/terms" element={<Terms />}></Route>
 					<Route path="*" element={<E404 />} />
 				</Routes>
 				<Footer />
