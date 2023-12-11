@@ -10,7 +10,6 @@ export const FormErrors = {
 	PhoneIncorrect: "Numer telefonu nie jest prawidłowy",
 	CompanyLetters: "Nazwa firmy musi mieć co najmniej 3 znaki",
 	Terms: "Musisz zaakceptować naszą polityke prywatności",
-	MessageLetters: "Wiadomość musi mieć co najmniej 20 znaków",
-	Sent: "Musisz odczekać 5 sekund zanim ponownie wyślesz formularz",
+	MessageLetters: "Wiadomość musi mieć co najmniej 50 znaków",
 	Captcha: "Musisz potwierdzić, że nie jesteś robotem"
 };

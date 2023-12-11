@@ -54,7 +54,7 @@ class FormValidation {
 		}
 
 		if(inputs.message !== '') {
-			if(inputs.message.length < 20) Errors.push(FormErrors.MessageLetters);
+			if(inputs.message.length < 50) Errors.push(FormErrors.MessageLetters);
 		}
 		else {
 			Errors.push(FormErrors.Empty);
