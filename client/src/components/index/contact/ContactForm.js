@@ -42,7 +42,8 @@ class ContactForm extends Component {
 			sent: "",
 			lastSentStatus: "",
 			remainingTime: "Wyślij",
-			intervalId: null
+			intervalId: null,
+			messageState: false,
 		};
 
 		this.recaptchaRef = React.createRef();
@@ -68,6 +69,7 @@ class ContactForm extends Component {
 		this.formSubmittedStorage = this.formSubmittedStorage.bind(this);
 		this.updateRemainingTime = this.updateRemainingTime.bind(this);
 		this.remainingTimeUpdator = this.remainingTimeUpdator.bind(this);
+		this.messageState = this.messageState.bind(this);
 	}
 
 	componentWillUnmount() {
@@ -535,6 +537,12 @@ class ContactForm extends Component {
 		else this.submitForm(inputs);
 	}
 
+	messageState(state) {
+		this.setState({
+			messageState: state
+		});
+	}
+
 	render() {
 		return(
 			<>
@@ -585,7 +593,12 @@ class ContactForm extends Component {
 						<Row className="mt-2">
 							<Col xs={12} className="p-0">
 								<Form.Group className="contact-message-container">
-									<textarea className={`contact-info-textarea-input ps-1 w-100 ${this.state.messageHighlight ? "highlight" : ""}`} id="contactFormMessageInput" name="contactFormMessageInput" spellCheck="true" placeholder="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)} />
+									<textarea className={`contact-info-textarea-input ps-1 w-100 ${this.state.messageHighlight ? "highlight" : ""}`} id="contactFormMessageInput" name="contactFormMessageInput" spellCheck="true" placeholder="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)} onFocus={() => this.messageState(true)} onBlur={() => this.messageState(false)} />
+									<div className="contact-info-counter-container">
+										<div className={`contact-info-counter-wrapper px-2 ${this.state.messageState ? "focus" : ""}`}>
+											<span className={this.state.message.length < 50 ? "red" : "green"}>{this.state.message.length}/50</span>
+										</div>
+									</div>
 								</Form.Group>
 							</Col>
 						</Row>

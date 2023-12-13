@@ -6,7 +6,7 @@ class Main extends Component {
 			<section id="main">
 				<div className="text-container p-2">
 					<h1>Twoja księgowość</h1>
-					<h4>Rzetelnie, prosto i porządnie</h4>
+					<h4>Rzetelnie i profesjonalnie</h4>
 				</div>
 			</section>
 		);
