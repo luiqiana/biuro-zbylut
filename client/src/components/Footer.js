@@ -17,7 +17,7 @@ class Footer extends Component {
 							<p>Dostosowując się do potrzeb klientów świadczymy usługi w siedzibie klienta poprzez konsultacje oraz dostarczanie i odbiór dokumentów.</p>
 						</Col>
 						<Col md={4} className="mx-auto mb-md-0 mb-4">
-							<h6 className="text-uppercase fw-bold mb-4">Strona</h6>
+							<h6 className="text-uppercase fw-bold mb-4">Mapa strony</h6>
 							<SectionCreator />
 						</Col>
 						<Col md={4} className="mx-auto mb-md-0 mb-4">

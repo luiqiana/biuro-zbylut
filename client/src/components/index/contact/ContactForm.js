@@ -44,6 +44,7 @@ class ContactForm extends Component {
 			remainingTime: "Wyślij",
 			intervalId: null,
 			messageState: false,
+			browser: "chrome"
 		};
 
 		this.recaptchaRef = React.createRef();
@@ -70,10 +71,27 @@ class ContactForm extends Component {
 		this.updateRemainingTime = this.updateRemainingTime.bind(this);
 		this.remainingTimeUpdator = this.remainingTimeUpdator.bind(this);
 		this.messageState = this.messageState.bind(this);
+		this.getUserAgent = this.getUserAgent.bind(this);
+
+		this.getUserAgent();
 	}
 
 	componentWillUnmount() {
 		clearInterval(this.state.intervalId);
+	}
+
+	getUserAgent() {
+		const browser = new Map();
+
+		browser.set("isFirefox", navigator.userAgent.toLowerCase().includes('firefox'));
+		browser.set("isSafari", /^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+		browser.set("isChrome", /chrome/i.test(navigator.userAgent) && window.chrome);
+
+		const numberOfTrues = Array.from(browser.values()).filter(value => value === true).length;
+
+		this.setState({
+			browser: (numberOfTrues === 1 ? (browser.get("isFirefox") ? "firefox" : (browser.get("isSafari") ? "safari" : "chrome")) : "chrome")
+		});
 	}
 
 	getAlert() {
@@ -133,6 +151,8 @@ class ContactForm extends Component {
 			this.setState({
 				remainingTime: `${remainingMinutes}:${((remainingSeconds.toString()).length > 1 ? "" : "0") + remainingSeconds.toString()}`
 			});
+
+			if(remainingMinutes === 0 && remainingSeconds > 3 && remainingSeconds <= 5) this.recaptchaRef.current.reset();
 		}
 	}
 
@@ -452,7 +472,6 @@ class ContactForm extends Component {
 				});
 
 				this.showAlert(data.sent);
-				this.recaptchaRef.current.reset();
 
 				if(data.sent === "true" || data.sent === "notuser") {
 					this.setState({
@@ -494,7 +513,6 @@ class ContactForm extends Component {
 						sent: ""
 					});
 				}, 5000);
-				this.recaptchaRef.current.reset();
 			}
 		);
 	}
@@ -594,7 +612,7 @@ class ContactForm extends Component {
 							<Col xs={12} className="p-0">
 								<Form.Group className="contact-message-container">
 									<textarea className={`contact-info-textarea-input ps-1 w-100 ${this.state.messageHighlight ? "highlight" : ""}`} id="contactFormMessageInput" name="contactFormMessageInput" spellCheck="true" placeholder="Wiadomość" value={this.state.message} onChange={(e) => this.changeInput(e)} onFocus={() => this.messageState(true)} onBlur={() => this.messageState(false)} />
-									<div className="contact-info-counter-container">
+									<div className={`contact-info-counter-container ${this.state.browser}-browser`}>
 										<div className={`contact-info-counter-wrapper px-2 ${this.state.messageState ? "focus" : ""}`}>
 											<span className={this.state.message.length < 50 ? "red" : "green"}>{this.state.message.length}/50</span>
 										</div>

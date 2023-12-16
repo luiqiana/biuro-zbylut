@@ -998,13 +998,23 @@ section#contact {
 						width: 100%;
 						display: flex;
 						flex-direction: row-reverse;
-						margin-top: -9px;
+
+						&.firefox-browser {
+							margin-top: -3px;
+						}
+
+						&.chrome-browser {
+							margin-top: -9px;
+						}
+
+						&.safari-browser {
+							margin-top: -10px;
+						}
 
 						div.contact-info-counter-wrapper {
 							border-right: 2px solid #00baba;
 							border-left: 2px solid #00baba;
 							border-bottom: 2px solid #00baba;
-							border-top: 2px solid #ffffff;
 							z-index: 2;
 							background-color: #ffffff;
 							transition: 0.5s;
