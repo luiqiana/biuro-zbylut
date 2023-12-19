@@ -30,6 +30,7 @@ function MapElement() {
 			<MarkerF
 				position={office}
 				title="Biuro"
+				onClick={() => window.open("https://maps.app.goo.gl/iA3pTqpe4Ksumty77")}
 			/>
 		</GoogleMap>
 	);
